@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buat Cici 💕</title>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --pink: #FF6B9D;
+    --pink-light: #FFB3CE;
+    --pink-pale: #FFF0F5;
+    --lavender: #C8A4F8;
+    --lav-light: #EDE0FF;
+    --yellow: #FFD93D;
+    --peach: #FF9A8B;
+    --mint: #A8EDBB;
+    --sky: #A0D2F7;
+    --white: #FFFFFF;
+    --text-dark: #4A3060;
+    --text-mid: #7A5FA0;
+    --text-soft: #B88FD0;
+  }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: linear-gradient(135deg, #FFF0F8 0%, #F0E8FF 40%, #E8F4FF 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+    color: var(--text-dark);
+  }
+
+  /* Floating background blobs */
+  .blob-bg {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.25;
+    animation: blobFloat 8s ease-in-out infinite;
+  }
+
+  .blob1 { width: 400px; height: 400px; background: var(--pink); top: -100px; left: -100px; animation-delay: 0s; }
+  .blob2 { width: 350px; height: 350px; background: var(--lavender); top: 30%; right: -80px; animation-delay: 2s; }
+  .blob3 { width: 300px; height: 300px; background: var(--yellow); bottom: 10%; left: 20%; animation-delay: 4s; }
+  .blob4 { width: 250px; height: 250px; background: var(--sky); bottom: -50px; right: 30%; animation-delay: 1s; }
+
+  @keyframes blobFloat {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-30px) scale(1.05); }
+  }
+
+  /* Floating particles */
+  .particles { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:1; }
+  .particle {
+    position: absolute;
+    font-size: 18px;
+    animation: floatUp linear infinite;
+    opacity: 0;
+  }
+  @keyframes floatUp {
+    0%   { opacity: 0; transform: translateY(0) rotate(0deg); }
+    10%  { opacity: 1; }
+    90%  { opacity: 1; }
+    100% { opacity: 0; transform: translateY(-100vh) rotate(360deg); }
+  }
+
+  /* Main wrapper */
+  .wrapper {
+    position: relative;
+    z-index: 2;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+  }
+
+  /* Section spacing */
+  section { margin-bottom: 40px; }
+
+  /* === HERO === */
+  .hero {
+    text-align: center;
+    padding: 50px 20px 40px;
+    position: relative;
+  }
+
+  .hero-bear {
+    font-size: 80px;
+    display: block;
+    animation: bearBounce 2s ease-in-out infinite;
+    filter: drop-shadow(0 8px 16px rgba(255,107,157,0.3));
+    margin-bottom: 16px;
+  }
+
+  @keyframes bearBounce {
+    0%, 100% { transform: translateY(0) rotate(-3deg); }
+    50% { transform: translateY(-12px) rotate(3deg); }
+  }
+
+  .hero-title {
+    font-family: 'Quicksand', sans-serif;
+    font-size: clamp(28px, 6vw, 48px);
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--pink), var(--lavender));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    color: var(--text-mid);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  .hero-hearts {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 16px;
+    font-size: 22px;
+  }
+
+  .heart-spin {
+    display: inline-block;
+    animation: heartPop 1.5s ease-in-out infinite;
+  }
+  .heart-spin:nth-child(2) { animation-delay: 0.3s; }
+  .heart-spin:nth-child(3) { animation-delay: 0.6s; }
+  .heart-spin:nth-child(4) { animation-delay: 0.9s; }
+  .heart-spin:nth-child(5) { animation-delay: 1.2s; }
+
+  @keyframes heartPop {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+  }
+
+  /* === ENVELOPE / LETTER === */
+  .letter-card {
+    background: white;
+    border-radius: 24px;
+    padding: 36px 32px;
+    box-shadow: 0 8px 40px rgba(200, 164, 248, 0.25), 0 2px 8px rgba(255,107,157,0.1);
+    border: 2px solid #F5E6FF;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .letter-card::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 160px; height: 160px;
+    background: radial-gradient(circle, #FFE8F4 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .letter-card::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: -40px;
+    width: 140px; height: 140px;
+    background: radial-gradient(circle, #F0E8FF 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .letter-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .letter-icon {
+    font-size: 32px;
+    animation: envelopeWiggle 3s ease-in-out infinite;
+  }
+
+  @keyframes envelopeWiggle {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-8deg); }
+    75% { transform: rotate(8deg); }
+  }
+
+  .letter-title {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--pink);
+  }
+
+  .letter-body {
+    font-size: 15px;
+    line-height: 1.9;
+    color: var(--text-dark);
+    position: relative;
+    z-index: 1;
+  }
+
+  .letter-body p { margin-bottom: 14px; }
+  .letter-body p:last-child { margin-bottom: 0; }
+
+  .highlight-pink { color: var(--pink); font-weight: 700; }
+  .highlight-lav { color: #9B6FE0; font-weight: 700; }
+
+  /* === AFFIRMATION CARDS === */
+  .affirmation-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+  }
+
+  .affirmation-card {
+    background: white;
+    border-radius: 20px;
+    padding: 24px 20px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(200,164,248,0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid transparent;
+  }
+
+  .affirmation-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 12px 32px rgba(200,164,248,0.35);
+  }
+
+  .affirmation-card.c1 { border-color: #FFD6E7; }
+  .affirmation-card.c2 { border-color: #E8D5FF; }
+  .affirmation-card.c3 { border-color: #D5EEFF; }
+  .affirmation-card.c4 { border-color: #D5FFE8; }
+  .affirmation-card.c5 { border-color: #FFECD5; }
+  .affirmation-card.c6 { border-color: #FFD5D5; }
+
+  .aff-emoji { font-size: 40px; margin-bottom: 10px; display: block; }
+  .aff-text { font-size: 14px; font-weight: 700; color: var(--text-dark); line-height: 1.5; }
+  .aff-sub { font-size: 12px; color: var(--text-soft); margin-top: 6px; }
+
+  /* === PROGRESS / SEMANGAT METER === */
+  .semangat-card {
+    background: white;
+    border-radius: 24px;
+    padding: 32px 28px;
+    box-shadow: 0 8px 40px rgba(255,107,157,0.15);
+    border: 2px solid #FFE0EE;
+    text-align: center;
+  }
+
+  .semangat-title {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+  }
+
+  .semangat-sub { font-size: 14px; color: var(--text-soft); margin-bottom: 24px; }
+
+  .battery-wrap { display: flex; justify-content: center; margin-bottom: 20px; }
+
+  .battery {
+    position: relative;
+    width: 100px;
+    height: 180px;
+    border: 4px solid var(--pink);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+    background: white;
+  }
+
+  .battery::before {
+    content: '';
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 12px;
+    background: var(--pink);
+    border-radius: 4px 4px 0 0;
+  }
+
+  .battery-fill {
+    background: linear-gradient(to top, var(--pink), var(--lavender));
+    width: 100%;
+    animation: batteryCharge 3s ease-in-out infinite;
+    position: relative;
+  }
+
+  @keyframes batteryCharge {
+    0%, 100% { height: 92%; }
+    50% { height: 98%; }
+  }
+
+  .battery-label {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    bottom: 12px;
+    font-size: 20px;
+    font-weight: 800;
+    color: white;
+    z-index: 1;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  }
+
+  .batt-emoji { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); font-size: 28px; z-index: 1; }
+
+  .semangat-message {
+    font-size: 16px;
+    color: var(--text-mid);
+    font-weight: 600;
+    line-height: 1.6;
+  }
+
+  /* === HUG BUTTON === */
+  .hug-section { text-align: center; }
+
+  .hug-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, var(--pink), var(--lavender));
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 18px 40px;
+    font-size: 18px;
+    font-weight: 800;
+    font-family: 'Nunito', sans-serif;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(255,107,157,0.4);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hug-btn:hover {
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 12px 32px rgba(255,107,157,0.5);
+  }
+
+  .hug-btn:active { transform: scale(0.97); }
+
+  .hug-result {
+    margin-top: 20px;
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--pink);
+    min-height: 40px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    font-family: 'Quicksand', sans-serif;
+  }
+
+  .hug-result.show { opacity: 1; }
+
+  /* === PLAYLIST VIBES === */
+  .vibe-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px;
+  }
+
+  .vibe-card {
+    border-radius: 18px;
+    padding: 20px 16px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+
+  .vibe-card:hover { transform: translateY(-4px) rotate(1deg); }
+  .vibe-card.v1 { background: linear-gradient(135deg, #FFD6E7, #FFB3CE); }
+  .vibe-card.v2 { background: linear-gradient(135deg, #E8D5FF, #C8A4F8); }
+  .vibe-card.v3 { background: linear-gradient(135deg, #D5EEFF, #A0D2F7); }
+  .vibe-card.v4 { background: linear-gradient(135deg, #D5FFE8, #A8EDBB); }
+
+  .vibe-emoji { font-size: 36px; margin-bottom: 8px; display: block; }
+  .vibe-title { font-size: 14px; font-weight: 800; color: var(--text-dark); margin-bottom: 4px; }
+  .vibe-desc { font-size: 12px; color: var(--text-mid); }
+
+  /* === QUOTES === */
+  .quote-card {
+    background: linear-gradient(135deg, var(--pink), #C87AE8);
+    border-radius: 24px;
+    padding: 36px 32px;
+    text-align: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .quote-card::before {
+    content: '❝';
+    position: absolute;
+    top: 10px; left: 20px;
+    font-size: 80px;
+    opacity: 0.15;
+    font-family: serif;
+    line-height: 1;
+  }
+
+  .quote-text {
+    font-family: 'Quicksand', sans-serif;
+    font-size: clamp(16px, 3vw, 22px);
+    font-weight: 700;
+    line-height: 1.6;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .quote-author {
+    font-size: 14px;
+    opacity: 0.85;
+    font-weight: 600;
+  }
+
+  .quote-nav {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .q-btn {
+    background: rgba(255,255,255,0.3);
+    border: 2px solid rgba(255,255,255,0.5);
+    color: white;
+    border-radius: 50px;
+    padding: 8px 20px;
+    font-size: 13px;
+    font-weight: 700;
+    font-family: 'Nunito', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .q-btn:hover { background: rgba(255,255,255,0.5); transform: scale(1.05); }
+
+  /* === FOOTER === */
+  .footer {
+    text-align: center;
+    padding-top: 20px;
+  }
+
+  .footer-text {
+    font-size: 14px;
+    color: var(--text-soft);
+    line-height: 1.8;
+  }
+
+  .footer-heart { font-size: 24px; animation: heartPop 1s ease-in-out infinite; }
+
+  /* === SECTION LABELS === */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+
+  .section-label-emoji { font-size: 22px; }
+
+  .section-label-text {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-dark);
+  }
+
+  /* === STICKER RIBBON === */
+  .sticker-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 32px;
+  }
+
+  .sticker {
+    background: white;
+    border-radius: 50px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-mid);
+    box-shadow: 0 2px 12px rgba(200,164,248,0.2);
+    border: 1.5px solid #F0E0FF;
+    animation: stickerWobble 3s ease-in-out infinite;
+  }
+
+  .sticker:nth-child(2) { animation-delay: 0.5s; }
+  .sticker:nth-child(3) { animation-delay: 1s; }
+  .sticker:nth-child(4) { animation-delay: 1.5s; }
+
+  @keyframes stickerWobble {
+    0%, 100% { transform: rotate(-1deg) scale(1); }
+    50% { transform: rotate(1deg) scale(1.03); }
+  }
+
+  /* Scroll animation */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  /* === MUSIC PLAYER === */
+  .music-player {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 999;
+    background: white;
+    border-radius: 60px;
+    padding: 12px 18px 12px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 8px 32px rgba(200,164,248,0.35), 0 2px 8px rgba(255,107,157,0.15);
+    border: 2px solid #F0E0FF;
+    transition: all 0.3s ease;
+    max-width: 260px;
+  }
+
+  .music-player:hover {
+    box-shadow: 0 12px 40px rgba(200,164,248,0.45);
+    transform: translateY(-2px);
+  }
+
+  .music-disc {
+    width: 38px;
+    height: 38px;
+    background: linear-gradient(135deg, var(--pink), var(--lavender));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+    transition: transform 0.1s;
+  }
+
+  .music-disc.spinning {
+    animation: discSpin 4s linear infinite;
+  }
+
+  @keyframes discSpin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
+  .music-info { flex: 1; min-width: 0; }
+
+  .music-title {
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--text-dark);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .music-sub {
+    font-size: 10px;
+    color: var(--text-soft);
+    margin-top: 1px;
+  }
+
+  .music-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: none;
+    background: linear-gradient(135deg, var(--pink), var(--lavender));
+    color: white;
+    font-size: 13px;
+    cursor: pointer;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 3px 10px rgba(255,107,157,0.4);
+  }
+
+  .music-btn:hover { transform: scale(1.1); box-shadow: 0 5px 16px rgba(255,107,157,0.5); }
+  .music-btn:active { transform: scale(0.95); }
+
+  .music-vol {
+    width: 52px;
+    height: 3px;
+    accent-color: var(--pink);
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+</style>
+</head>
+<body>
+
+<!-- Animated background -->
+<div class="blob-bg">
+  <div class="blob blob1"></div>
+  <div class="blob blob2"></div>
+  <div class="blob blob3"></div>
+  <div class="blob blob4"></div>
+</div>
+
+<!-- Floating particles -->
+<div class="particles" id="particles"></div>
+
+<div class="wrapper">
+
+  <!-- HERO -->
+  <section class="hero">
+    <span class="hero-bear">🐻</span>
+    <h1 class="hero-title">Khusus buat Cici 💝</h1>
+    <p class="hero-sub">dari orang yang selalu di sisimu, walaupun dari jauh ✨</p>
+    <div class="hero-hearts">
+      <span class="heart-spin">💕</span>
+      <span class="heart-spin">🌸</span>
+      <span class="heart-spin">💜</span>
+      <span class="heart-spin">🌸</span>
+      <span class="heart-spin">💕</span>
+    </div>
+  </section>
+
+  <!-- STICKERS -->
+  <div class="sticker-row fade-in">
+    <span class="sticker">🌟 kamu luar biasa</span>
+    <span class="sticker">💪 terus semangat</span>
+    <span class="sticker">🫶 selalu disayang</span>
+    <span class="sticker">✨ kamu bisa!</span>
+  </div>
+
+  <!-- LETTER -->
+  <section class="fade-in">
+    <div class="section-label">
+      <span class="section-label-emoji">💌</span>
+      <span class="section-label-text">Surat kecil buat kamu</span>
+    </div>
+    <div class="letter-card">
+      <div class="letter-header">
+        <span class="letter-icon">💌</span>
+        <div class="letter-title">Cici sayang,</div>
+      </div>
+      <div class="letter-body">
+        <p>Cici, aku tau belakangan ini waktumu habis untuk berjuang — dan itu bukan hal kecil. Ada hari-hari di mana langkah terasa berat, napas terasa sesak, dan malam datang sebelum semuanya selesai. <span class="highlight-pink">Aku melihat itu semua</span>, diam-diam, dengan penuh kagum 😔</p>
+        <p>Yang ingin aku katakan bukan sekadar "semangat" — tapi lebih dari itu. Aku ingin kamu tahu bahwa <span class="highlight-lav">setiap tetes usahamu itu berarti</span>. Bahwa di setiap langkah yang kamu pikir tak ada yang memperhatikan — aku ada. Dan aku bangga, lebih dari yang bisa kuungkapkan dengan kata-kata 💜</p>
+        <p>Kamu itu seperti bunga yang tetap mekar meski angin bertiup kencang. Ada ketenangan dalam dirimu yang membuatku selalu ingin berada di dekatmu — sebuah kekuatan yang mungkin kamu sendiri belum menyadarinya sepenuhnya 🌸</p>
+        <p>Tapi ingat ya, sayang — lilin yang paling terang pun perlu rehat sejenak agar nyalanya tak padam. Izinkan dirimu untuk istirahat, untuk makan dengan tenang, untuk tidur dengan damai. <span class="highlight-pink">Merawat dirimu sendiri bukan kelemahan</span> — itu cara kamu menghargai semua perjuangan yang sudah kamu lalui 🐻</p>
+        <p style="font-weight:700; color: #9B6FE0;">Aku di sini — bukan hanya di hari-hari cerahmu, tapi juga di saat langitmu mendung. Apapun yang sedang kamu hadapi, hadapi bersama aku ya, Cici. Karena kamu tidak pernah sendirian 💜✨</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- AFFIRMATION CARDS -->
+  <section class="fade-in">
+    <div class="section-label">
+      <span class="section-label-emoji">🌸</span>
+      <span class="section-label-text">Kamu adalah...</span>
+    </div>
+    <div class="affirmation-grid">
+      <div class="affirmation-card c1">
+        <span class="aff-emoji">💪</span>
+        <div class="aff-text">Perempuan yang tak mudah patah</div>
+        <div class="aff-sub">Badai sekalipun tak mampu membuatmu tunduk 🌿</div>
+      </div>
+      <div class="affirmation-card c2">
+        <span class="aff-emoji">🌟</span>
+        <div class="aff-text">Cahaya yang tak pernah padam</div>
+        <div class="aff-sub">Sinarmu menerangi bahkan malam yang paling pekat 💜</div>
+      </div>
+      <div class="affirmation-card c3">
+        <span class="aff-emoji">🧠</span>
+        <div class="aff-text">Pikiran yang dalam & berhati mulia</div>
+        <div class="aff-sub">Setiap buah pikiranmu adalah keajaiban kecil ✨</div>
+      </div>
+      <div class="affirmation-card c4">
+        <span class="aff-emoji">🌸</span>
+        <div class="aff-text">Keindahan yang tulus dari dalam</div>
+        <div class="aff-sub">Cantikmu bukan hiasan — ia adalah cerminan jiwamu 🪞</div>
+      </div>
+      <div class="affirmation-card c5">
+        <span class="aff-emoji">🦋</span>
+        <div class="aff-text">Jiwa yang terus bertumbuh</div>
+        <div class="aff-sub">Seperti kupu-kupu — setiap hari kamu menjelma lebih indah 🌱</div>
+      </div>
+      <div class="affirmation-card c6">
+        <span class="aff-emoji">❤️</span>
+        <div class="aff-text">Seseorang yang amat dicintai</div>
+        <div class="aff-sub">Olehku — dengan cara yang sungguh-sungguh dan tak tergoyahkan 💕</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEMANGAT METER -->
+  <section class="fade-in">
+    <div class="section-label">
+      <span class="section-label-emoji">⚡</span>
+      <span class="section-label-text">Semangat Cici hari ini</span>
+    </div>
+    <div class="semangat-card">
+      <div class="semangat-title">Level semangat kamu 💜</div>
+      <div class="semangat-sub">menurut aku yang selalu percaya sama kamu</div>
+      <div class="battery-wrap">
+        <div class="battery">
+          <div class="battery-fill">
+            <span class="battery-label">💯%</span>
+          </div>
+        </div>
+      </div>
+      <div class="semangat-message">
+        Baterai semangatmu selalu penuh di mataku! 🔋✨<br>
+        Selesaikan satu per satu, gak usah buru-buru 🌸
+      </div>
+    </div>
+  </section>
+
+  <!-- HUG BUTTON -->
+  <section class="fade-in hug-section">
+    <div class="section-label" style="justify-content:center;">
+      <span class="section-label-emoji">🤗</span>
+      <span class="section-label-text">Kamu butuh pelukan?</span>
+    </div>
+    <button class="hug-btn" onclick="sendHug()">
+      🐻 Kirim Pelukan Virtual!
+    </button>
+    <div class="hug-result" id="hugResult"></div>
+  </section>
+
+  <!-- QUOTE CAROUSEL -->
+  <section class="fade-in">
+    <div class="section-label">
+      <span class="section-label-emoji">✨</span>
+      <span class="section-label-text">Kata-kata buat hari ini</span>
+    </div>
+    <div class="quote-card">
+      <div class="quote-text" id="quoteText">
+        "Ada keindahan yang tak terucap dalam setiap usahamu yang diam-diam — seperti bintang yang bersinar paling terang justru di langit yang paling gelap. Kamu sedang menjadi salah satunya."
+      </div>
+      <div class="quote-author" id="quoteAuthor">🌸 ditulis untukmu, Cici</div>
+      <div class="quote-nav">
+        <button class="q-btn" onclick="prevQuote()">← sebelumnya</button>
+        <button class="q-btn" onclick="nextQuote()">berikutnya →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIBE CARDS -->
+  <section class="fade-in">
+    <div class="section-label">
+      <span class="section-label-emoji">🎵</span>
+      <span class="section-label-text">Mood hari ini kayak...</span>
+    </div>
+    <div class="vibe-cards">
+      <div class="vibe-card v1">
+        <span class="vibe-emoji">🌸</span>
+        <div class="vibe-title">Sedang khusyuk berjuang</div>
+        <div class="vibe-desc">Ada keindahan dalam fokusmu yang sungguh-sungguh itu ✨</div>
+      </div>
+      <div class="vibe-card v2">
+        <span class="vibe-emoji">💜</span>
+        <div class="vibe-title">Raga dan jiwa yang lelah</div>
+        <div class="vibe-desc">Beristirahat adalah caramu mencintai dirimu sendiri 🫶</div>
+      </div>
+      <div class="vibe-card v3">
+        <span class="vibe-emoji">💙</span>
+        <div class="vibe-title">Merindukan kekuatan</div>
+        <div class="vibe-desc">Aku di sini — dan aku tak akan pergi ke mana pun 💜</div>
+      </div>
+      <div class="vibe-card v4">
+        <span class="vibe-emoji">💚</span>
+        <div class="vibe-title">Hati yang sedang mekar</div>
+        <div class="vibe-desc">Simpan senyum itu — ia adalah hadiah terindahmu 🌟</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MUSIC PLAYER -->
+  <!-- 🎵 CARA GANTI MUSIK (MUDAH BANGET!):                          -->
+  <!-- 1. Taruh file .mp3 kamu SATU FOLDER dengan file HTML ini      -->
+  <!-- 2. Ganti tulisan "nama-lagu.mp3" di bawah dengan nama         -->
+  <!--    file mp3 kamu persis — contoh: "lagu-cici.mp3"             -->
+  <!-- ⚠️  Pastikan nama file SAMA PERSIS termasuk huruf besar/kecil -->
+  <audio id="bgMusic" loop preload="none">
+    <source src="nama-lagu.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="music-player" id="musicPlayer">
+    <div class="music-disc" id="musicDisc">🎵</div>
+    <div class="music-info">
+      <div class="music-title" id="musicTitle">Lagu Buat Cici 💕</div>
+      <div class="music-sub" id="musicSub">tekan play untuk memutar ♪</div>
+    </div>
+    <button class="music-btn" id="musicBtn" onclick="toggleMusic()">
+      <span id="musicIcon">▶</span>
+    </button>
+    <input type="range" class="music-vol" id="musicVol" min="0" max="1" step="0.05" value="0.6" oninput="setVolume(this.value)" title="Volume">
+  </div>
+
+  <!-- FOOTER -->
+  <section class="fade-in footer">
+    <div class="footer-heart">🐻💕</div>
+    <div class="footer-text">
+      Web ini dibuat dengan sepenuh hati, khusus buat Cici.<br>
+      Apapun yang lagi kamu hadapi sekarang, kamu gak sendirian.<br>
+      <strong style="color:var(--pink);">Aku selalu ada, sayang. 💜</strong>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  // Floating particles
+  const emojis = ['💕','🌸','✨','💜','⭐','🌟','💖','🦋','🌺','💫'];
+  const container = document.getElementById('particles');
+
+  function createParticle() {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    p.style.left = Math.random() * 100 + 'vw';
+    p.style.top = '100vh';
+    p.style.fontSize = (12 + Math.random() * 16) + 'px';
+    const dur = 6 + Math.random() * 8;
+    p.style.animationDuration = dur + 's';
+    p.style.animationDelay = Math.random() * 4 + 's';
+    container.appendChild(p);
+    setTimeout(() => p.remove(), (dur + 4) * 1000);
+  }
+
+  setInterval(createParticle, 600);
+  for (let i = 0; i < 6; i++) setTimeout(createParticle, i * 300);
+
+  // Hug button
+  const hugMessages = [
+    '🐻 *memeluk erat* Kamu gak sendiri ya sayang! 💜',
+    '🌸 Pelukan hangat terkirim! Semangat terus Cici! 💕',
+    '✨ Ini pelukan ekstra kuat dari aku! 🫂💜',
+    '💖 Rasain gak pelukan virtualnya? hehe 🐻💕',
+    '🌟 Kamu dipeluk sama seseorang yang sayang banget sama kamu! 💜',
+    '🎀 Satu pelukan lagi! Karena kamu layak dapat banyak 💕',
+  ];
+  let hugIndex = 0;
+
+  function sendHug() {
+    const el = document.getElementById('hugResult');
+    el.classList.remove('show');
+    setTimeout(() => {
+      el.textContent = hugMessages[hugIndex % hugMessages.length];
+      el.classList.add('show');
+      hugIndex++;
+    }, 200);
+
+    // Burst emoji around button
+    for (let i = 0; i < 8; i++) {
+      setTimeout(createParticle, i * 80);
+    }
+  }
+
+  // Quote carousel
+  const quotes = [
+    { text: "Ada keindahan yang tak terucap dalam setiap usahamu yang diam-diam — seperti bintang yang bersinar paling terang justru di langit yang paling gelap. Kamu sedang menjadi salah satunya.", author: "🌸 ditulis untukmu, Cici" },
+    { text: "Lelah itu bukan tanda bahwa kamu lemah — lelah adalah bukti bahwa kamu telah berjuang dengan sungguh-sungguh. Izinkan dirimu untuk beristirahat, seperti laut yang surut hanya untuk kembali lebih dalam.", author: "💜 dari hati yang selalu bersamamu" },
+    { text: "Setiap langkah yang kamu ambil, sekecil apapun itu, sedang mengukir namamu di perjalanan yang kelak akan kamu banggakan. Jangan pandang jarak yang tersisa — pandang seberapa jauh kamu sudah melangkah.", author: "✨ khusus untuk Cici tercinta" },
+    { text: "Kamu tidak perlu sempurna untuk menjadi luar biasa. Bunga tidak meminta maaf atas kelopaknya yang tak simetris — namun tetap saja, ia adalah yang paling indah di taman.", author: "🐻 dari seseorang yang melihat indahmu" },
+    { text: "Di sela-sela kesibukanmu, aku harap ada satu momen di mana kamu berhenti sejenak, menarik napas, dan menyadari — betapa berharganya dirimu. Bukan karena apa yang kamu capai, tapi karena kamu ada.", author: "💕 selalu, untukmu seorang" },
+    { text: "Waktu akan terus berjalan, dan hari-hari sibuk ini kelak akan menjadi cerita yang kamu kisahkan dengan senyum. Bertahanlah, sayang — musim semi selalu datang setelah dingin yang paling panjang sekalipun.", author: "🌷 dengan cinta yang tak pernah surut" },
+  ];
+  let qIndex = 0;
+
+  function updateQuote() {
+    const text = document.getElementById('quoteText');
+    const author = document.getElementById('quoteAuthor');
+    text.style.opacity = 0;
+    author.style.opacity = 0;
+    setTimeout(() => {
+      text.textContent = '"' + quotes[qIndex].text + '"';
+      author.textContent = quotes[qIndex].author;
+      text.style.transition = 'opacity 0.5s';
+      author.style.transition = 'opacity 0.5s';
+      text.style.opacity = 1;
+      author.style.opacity = 1;
+    }, 300);
+  }
+
+  function nextQuote() {
+    qIndex = (qIndex + 1) % quotes.length;
+    updateQuote();
+  }
+
+  function prevQuote() {
+    qIndex = (qIndex - 1 + quotes.length) % quotes.length;
+    updateQuote();
+  }
+
+  // Scroll fade-in
+  const fadeEls = document.querySelectorAll('.fade-in');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  fadeEls.forEach(el => observer.observe(el));
+  // Music player
+  const audio = document.getElementById('bgMusic');
+  const disc  = document.getElementById('musicDisc');
+  const btn   = document.getElementById('musicBtn');
+  const icon  = document.getElementById('musicIcon');
+  const sub   = document.getElementById('musicSub');
+  let playing = false;
+
+  audio.volume = 0.6;
+
+  function toggleMusic() {
+    if (playing) {
+      audio.pause();
+      disc.classList.remove('spinning');
+      icon.textContent = '▶';
+      sub.textContent  = 'dijeda sebentar ♪';
+      playing = false;
+    } else {
+      audio.play().then(() => {
+        disc.classList.add('spinning');
+        icon.textContent = '⏸';
+        sub.textContent  = 'sedang mengalun untukmu ♪';
+        playing = true;
+      }).catch(() => {
+        sub.textContent = 'link musik belum diisi 🎵';
+      });
+    }
+  }
+
+  function setVolume(v) { audio.volume = parseFloat(v); }
+
+</script>
+</body>
+</html>
